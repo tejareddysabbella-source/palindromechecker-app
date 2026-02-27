@@ -1,36 +1,45 @@
 /*
- * UC5: Stack-Based Palindrome Checker
+ * UC6: Queue + Stack Based Palindrome Check
  * Palindrome Checker App
  */
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
-public class UseCase5PalindromeCheckerApp {
+public class UseCase6PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Original string
-        String input = "deed";
+        // Input string
+        String input = "racecar";
 
-        // Stack to store characters
+        // Initialize queue and stack
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push all characters into stack
+        // Enqueue & push characters
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            char ch = input.charAt(i);
+            queue.add(ch);  // FIFO
+            stack.push(ch); // LIFO
         }
 
-        // Pop characters to create reversed string
-        String reversed = "";
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
+        boolean isPalindrome = true;
+
+        // Compare dequeue vs pop
+        while (!queue.isEmpty() && !stack.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // Compare original and reversed
-        if (input.equals(reversed)) {
-            System.out.println(input + " is a Palindrome.");
+        // Display result
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome (Queue + Stack check).");
         } else {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println(input + " is NOT a Palindrome (Queue + Stack check).");
         }
 
         System.out.println("Program execution completed.");
