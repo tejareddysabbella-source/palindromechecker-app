@@ -1,35 +1,31 @@
 /*
- * UC6: Queue + Stack Based Palindrome Check
+ * UC7: Deque-Based Optimized Palindrome Checker
  * Palindrome Checker App
  */
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-public class UseCase6PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         // Input string
-        String input = "racecar";
+        String input = "level";
 
-        // Initialize queue and stack
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // Initialize deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Enqueue & push characters
+        // Insert characters into deque
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            queue.add(ch);  // FIFO
-            stack.push(ch); // LIFO
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue vs pop
-        while (!queue.isEmpty() && !stack.isEmpty()) {
-            if (!queue.remove().equals(stack.pop())) {
+        // Compare front and rear
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
@@ -37,9 +33,9 @@ public class UseCase6PalindromeCheckerApp {
 
         // Display result
         if (isPalindrome) {
-            System.out.println(input + " is a Palindrome (Queue + Stack check).");
+            System.out.println(input + " is a Palindrome (Deque check).");
         } else {
-            System.out.println(input + " is NOT a Palindrome (Queue + Stack check).");
+            System.out.println(input + " is NOT a Palindrome (Deque check).");
         }
 
         System.out.println("Program execution completed.");
