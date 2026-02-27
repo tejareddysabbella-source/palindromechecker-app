@@ -1,27 +1,30 @@
 /*
- * UC1: Application Entry & Welcome Message
- * Palindrome Checker Application
+ * UC2: Print a Hardcoded Palindrome Result
+ * Palindrome Checker App
  */
 
-public class UseCase1PalindromeCheckerApp {
+public class UseCase2PalindromeCheckerApp {
 
-    // Application constants
-    static final String APP_NAME = "Palindrome Checker Application";
-    static final String APP_VERSION = "Version 1.0";
-
-    /*
-     * Main Method – Entry point of the Java application
-     * JVM invokes this method automatically.
-     */
     public static void main(String[] args) {
 
-        // Display welcome message
-        System.out.println("=======================================");
-        System.out.println("Welcome to " + APP_NAME);
-        System.out.println(APP_VERSION);
-        System.out.println("=======================================");
+        // Hardcoded string (String Literal)
+        String word = "madam";
 
-        // Application flow continues (next use case placeholder)
-        System.out.println("Application started successfully.");
+        // Variable to store reversed string
+        String reversed = "";
+
+        // Reverse the string using loop
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversed = reversed + word.charAt(i);
+        }
+
+        // Check palindrome using if-else
+        if (word.equals(reversed)) {
+            System.out.println(word + " is a Palindrome.");
+        } else {
+            System.out.println(word + " is NOT a Palindrome.");
+        }
+
+        System.out.println("Program execution completed.");
     }
 }
